@@ -5,9 +5,9 @@ function handleSubmit(event) {
   event.preventDefault();
 
   // check what text was put into the form field
-  let formText = document.getElementById("name").value;
+  let formText = document.getElementById("url").value;
   //document.querySelector("#username").textContent = `Hello! ${formText}`;
-  if (Client.checkForName(formText)) {
+  if (Client.validateInput(formText)) {
     console.log("::: Form Submitted :::");
     let data = {
       text: "Main dishes were quite good, but desserts were too sweet for me."
@@ -18,8 +18,8 @@ function handleSubmit(event) {
       }
     );
   } else {
-    console.log("Invalid name. No api call will be made.");
-    alert("Invalid name. Could not submit form.");
+    console.log("Invalid Url. No api call will be made.");
+    alert("Invalid Url. Could not submit form.");
   }
 }
 
