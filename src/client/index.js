@@ -1,4 +1,4 @@
-import { handleSubmit, fetchSentiments, updateUI } from './js/formHandler'
+import { handleSubmit, makeRequest, updateUI } from './js/formHandler'
 import { checkForName } from './js/nameChecker'
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -10,7 +10,7 @@ console.log("Hello I am Client side Js");
 
 export {
     handleSubmit,
-    fetchSentiments,
+    makeRequest,
     updateUI,
     checkForName
    }

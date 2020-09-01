@@ -10,9 +10,9 @@ function checkForName(inputText) {
 
     if(names.includes(inputText)) {
         alert("Welcome, Captain!")
-        return "valid name"
+        return true;
     }else
-        return "invalid name"
+        return false;
 }
 
 export { checkForName }
