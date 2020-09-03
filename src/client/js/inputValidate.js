@@ -1,10 +1,11 @@
-function validateInput(inputText) {
-    console.log("::: Running urlChecker :::", inputText);
-    var res = inputText.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+//this will check a valid location i.e blank/only characters
+function validateLocation(location) {
+    console.log("::: Running validateLocation :::", location);
+    var res = location.match(/^[A-Za-z]+$/);
     if(res == null)
         return false;
     else
         return true;
 }
 
-export { validateInput }
+export { validateLocation }

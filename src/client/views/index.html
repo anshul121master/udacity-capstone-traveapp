@@ -18,36 +18,25 @@
 
         <main>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="url" type="text" name="input" value="" placeholder="sample url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <form id="inputform">
+                    <input id="location" type="text" name="location" placeholder="Enter location">
+                    <input id="date" type="date" name="date" required>
+                    <input type="submit" value="submit">
                 </form>
             <section>
 
-            <section>
-                <strong>User Name:</strong>
-                <div id="username"></div>
-            </section>
-            <section>
-                <strong>Entire API Result:</strong>
-                <div id="apiresults"></div>
-            </section>
-            <section>
-                <strong>Sample Status object from API to display success:</strong>
-                <div id="apidata"></div>
-            </section>
         </main>
 
         <footer>
             <p>This is a footer</p>
         </footer>
         <script>
-        if ('serviceWorker' in navigator) {
+        /*if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js');
             });
-        }
+        }*/
     </script>
     </body>
 </html>

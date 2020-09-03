@@ -1,10 +1,10 @@
 {
-  "name": "example-project",
+  "name": "travel-project",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node src/server/index.js",
+    "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
   },
