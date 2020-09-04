@@ -1,42 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <title>BookMyHoliday</title>
+  </head>
 
-    <body>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          Logo
+        </div>
+        <nav>
+        </nav>
+      </header>
 
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+        <aside>
+          <form id="inputform">
+              <label for="location">Enter Location</label>
+            <input
+              id="location"
+              type="text"
+              name="location"
+              placeholder="Enter location"
+            />
+            <label for="startdate">Date of Journey</label>
+            <input id="startdate" type="date" name="startdate" required />
+            <label for="enddate">End Date</label>
+            <input id="enddate" type="date" name="enddate" required disabled/>
+            <input type="submit" value="submit" />
+          </form>
+        </aside>
 
         <main>
-            <section>
-                <form id="inputform">
-                    <input id="location" type="text" name="location" placeholder="Enter location">
-                    <input id="date" type="date" name="date" required>
-                    <input type="submit" value="submit">
-                </form>
-            <section>
+          <div>
+            <div id="locationimg">
+              <figure>
+                <img src="weather.jpg" alt="location image"/>
+              </figure>
+            </div>
+            <div id="weatherdata">
+                <h2 id="lastsearch"></h2>
+              <h1 id="triplength"></h1>
+              <h1>Weather Conditions:</h1>
+              <h2 id="afterdays"></h2>
+              <h2 id="mintemp"></h2>
+              <h2 id="maxtemp"></h2>
+              <h2 id="avgtemp"></h2>
+              <h2 id="description"></h2>
+            </div>
+          </div>
+      </main>
 
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
-        /*if ('serviceWorker' in navigator) {
+      <footer>
+        <p>
+          Copyright 2020
+        </p>
+      </footer>
+    </div>
+    <script>
+      if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js');
             });
-        }*/
+        }
     </script>
-    </body>
+  </body>
 </html>

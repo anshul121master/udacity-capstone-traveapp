@@ -1,0 +1,25 @@
+@media (min-width: 601px){
+.container{
+    display: grid;
+    grid-template-rows: 10vh auto 20vh;
+    grid-template-columns: 40vw 60vw;
+    grid-template-areas: 
+    "hd hd"
+    "as main"
+    "ft ft";
+}
+}
+//For mobile view
+@media (max-width: 600px){
+    .container{
+        display: grid;
+        grid-template-rows: 10vh auto auto 20vh;
+        grid-template-columns: 100vw;
+        grid-template-areas:
+          "hd"
+          "as"
+          "main"
+          "ft";
+    }
+    
+}

@@ -15,12 +15,14 @@ app.use(cors());
 
 //path for static directory in express.static is always relative to the current working directory.
 app.use(express.static(__dirname + "/../../dist"));
+app.use(express.static(__dirname + "/../client/media"));
 
 console.log(`Current directory is ${__dirname}`);
 
 let result = {};
 app.post("/fetchweather", fetchWeather);
 
+//below method will execute when the request is received at /fetchweather end point.
 function fetchWeather(req, resp) {
   console.log("Request received. fetchWeather method started.");
   let travelData = req.body;
@@ -41,24 +43,37 @@ function fetchWeather(req, resp) {
        //below if is to check whether user entered a valid location.
        if(geonamesobj.totalResultsCount==0){
            console.log(`Invalid location.`);
-           resp.send(result);
-         // throw new Error("error occured");
+         throw new Error("Invalid location entered.");
        }else{
-            return getCountryCodeFromGeoNames(geonamesobj);
+            return getLatLong(geonamesobj);
        }
     
-  }).then(countrycode =>{
-      let weatherbiturl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${travelData.location},${countrycode}&days=${diffInDays+1}&key=${process.env.WEATHERBIT_API_KEY}`;
+  }).then(latlong =>{
+      let weatherbiturl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latlong.latitude}&lon=${latlong.longitude}&days=${diffInDays+1}&key=${process.env.WEATHERBIT_API_KEY}`;
       return fetchData(weatherbiturl);
   }).then(weatherbitobj =>{
     getTemperatureFromWeatherBit(weatherbitobj);
     let pixabayurl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${travelData.location}&image_type=photo`;
     return fetchData(pixabayurl);
   }).then(pixabayobj =>{
-    getImageFromPixabay(pixabayobj);
-    resp.send(result);
-  }).catch(function(error){
-      console.log("error occured"+error);
+    if(pixabayobj.total==0){
+      console.log("No image found for entered location. Therefore, Requesting again for country image.")
+      pixabayurl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${result.countryName}&image_type=photo`;
+      fetchData(pixabayurl).then(pixabayobj =>{
+        getImageFromPixabay(pixabayobj);
+        resp.send(result);
+      })
+    }else{
+      getImageFromPixabay(pixabayobj);
+      resp.send(result);
+    }
+   
+  }).catch(error =>{
+      console.log(`Error occured in fetching response from some API. Error=> ${error}`);
+      result = {
+        errormsg: "Error Occured!Server could not process your request. Please re-check location or try again."
+      };
+      resp.send(result);
   });
   
 }
@@ -80,18 +95,24 @@ const fetchData = async (url) => {
     const respStream = await fetch(url);
     try {
       const response = await respStream.json();
-      console.log(response);
+      //below return statement implicitly get converted to Promise.resolve(response)
       return response;
     } catch (error) {
       console.log("error occured in fetching response from third party server", error);
     }
   };
   //this method will fetch country code from geonames json object.
-  const getCountryCodeFromGeoNames = geonamesObj =>{
-      console.log(`getCountryCodeFromGeoNames started`);
-     return geonamesObj.geonames[0].countryCode;
+  const getLatLong = geonamesObj =>{
+      console.log(`getLatLong started`);
+      let latlong = {};
+     latlong.longitude = geonamesObj.geonames[0].lng;
+     latlong.latitude = geonamesObj.geonames[0].lat;
+     result.countryName = geonamesObj.geonames[0].countryName;
+     result.cityName = geonamesObj.geonames[0].toponymName;
+     return latlong;
   };
 
+  //below method will extract weather info from weatherbit json and initialize the result object properties.
   const getTemperatureFromWeatherBit = weatherbitObj =>{
       console.log(`getTemperatureFromWeatherBit started`)
     const lastObj = weatherbitObj.data[weatherbitObj.data.length-1];
@@ -102,9 +123,10 @@ const fetchData = async (url) => {
 
   }
 
+  //below method will fetch the url of location image from pixabay json and initialize the result object property.
   const getImageFromPixabay = pixabayObj =>{
       console.log(`getImageFromPixabay started`)
       console.log(pixabayObj);
-    result.imgurl = pixabayObj.hits[0].previewURL;
+    result.imgurl = pixabayObj.hits[0].largeImageURL;
 
   }
