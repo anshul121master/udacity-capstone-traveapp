@@ -19,7 +19,7 @@ Run command: npm run build-prod =>for production
              npm run build-dev => for development
 
 A default image is retreived from media folder in /src/client/media/weather.jpg when the user visits at the very first time on the page.
-To look at it run the app in prod mode: npm run build-prod
+To look at it run the app in prod mode: npm run build-prod 
 
 All necessary checks have taken into consideration if user enters invalid location.
 
