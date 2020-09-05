@@ -11,7 +11,7 @@ describe("To test server response in case of valid and invalid location input", 
         const data = await sendTravelData(url, userTravelInfo);
         const stringdata = JSON.stringify(data);
         expect(stringdata).toMatch(/"cityName":"Mumbai","maxtemp"/);
-    })
+    }, 20000)
 
     test('Test to check whether APIs are working as expected on invalid location input', async() => {
         let userTravelInfo= {
@@ -22,5 +22,6 @@ describe("To test server response in case of valid and invalid location input", 
         const data = await sendTravelData(url, userTravelInfo);
         const stringdata = JSON.stringify(data);
         expect(stringdata).toMatch(/"errormsg"/);
-    });
+    }, 20000);
 });
+
