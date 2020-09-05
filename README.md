@@ -26,5 +26,13 @@ All necessary checks have taken into consideration if user enters invalid locati
 Note: While testing for application.test.js and validatelocation.test.js make sure server is up and listening at port 8090.
 While testing for server.test.js make sure server is not occupied at port 8090.
 
+Do seperate testing for server.test.js
 
+To test application.test.js and validatelocation.test.js:
+Up the server in another terminal at port 8090 and then fire the below cmd.
+cmd: npm run test application.test.js validation.test.js
+
+To test server.test.js
+Free port 8090 and then run below cmd.
+cmd: npm run test server.test.js
 
