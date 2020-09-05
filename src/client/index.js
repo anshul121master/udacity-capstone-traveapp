@@ -1,10 +1,10 @@
 import { handleSubmit, sendTravelData, updateUI, calculateTripLength } from './js/application'
 import { validateLocation } from './js/validatelocation'
-import './styles/gridsetup.scss'
 import './styles/footer.scss'
 import './styles/header.scss'
 import './styles/main.scss'
 import './styles/aside.scss'
+import './styles/gridsetup.scss'
 
 console.log("Executing Client side Js");
 

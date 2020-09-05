@@ -1,3 +1,5 @@
+import "regenerator-runtime/runtime.js";
+
 const dotenv = require("dotenv");
 dotenv.config();
 var path = require("path");
@@ -101,7 +103,7 @@ const fetchData = async (url) => {
       console.log("error occured in fetching response from third party server", error);
     }
   };
-  //this method will fetch country code from geonames json object.
+  //this method will fetch lat, long, countryname, cityname from geonames json object.
   const getLatLong = geonamesObj =>{
       console.log(`getLatLong started`);
       let latlong = {};
@@ -130,3 +132,5 @@ const fetchData = async (url) => {
     result.imgurl = pixabayObj.hits[0].largeImageURL;
 
   }
+
+  export{ fetchData, getLatLong };
