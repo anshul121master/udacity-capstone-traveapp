@@ -1,6 +1,6 @@
 # This project uses geonames, weaberbit and pixabay api's to fetch weather data for an entered location along with the location image.
 
-# Note: All credentials like API keys and usernames used in the project are stored in .env file and are accessed via process.env. So, kindly please include .env file with the same credential keys to avoid any issues.
+# Note: All credentials like API keys and usernames used in the project are stored in .env file and are accessed via process.env. So, kindly please include .env file with the same credential keys to avoid any issues. Due to security reasons .env is not pushed to git.
 
 Bundling tool used - webpack
 Testing tool used - Jest
