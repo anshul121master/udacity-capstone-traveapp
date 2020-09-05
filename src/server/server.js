@@ -1,4 +1,4 @@
-import "regenerator-runtime/runtime.js";
+const regeneratorRuntime = require("regenerator-runtime");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -133,4 +133,4 @@ const fetchData = async (url) => {
 
   }
 
-  export{ fetchData, getLatLong };
+  module.exports = { fetchData, getLatLong };

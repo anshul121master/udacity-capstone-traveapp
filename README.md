@@ -23,5 +23,8 @@ To look at it run the app in prod mode: npm run build-prod
 
 All necessary checks have taken into consideration if user enters invalid location.
 
+Note: While testing for application.test.js and validatelocation.test.js make sure server is up and listening at port 8090.
+While testing for server.test.js make sure server is not occupied at port 8090.
+
 
 
